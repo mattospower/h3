@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz de Informática</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="cartao">
+
+    <!-- Desafio 1 e 4: título alterado pelo botão "Iniciar Quiz" e pelo nome digitado -->
+    <h1 id="titulo">Quiz de Informática</h1>
+
+    <!-- TELA 1: nome do aluno + botão de início -->
+    <section id="tela-inicial" class="tela">
+      <p class="intro">
+        Quatro perguntas técnicas, uma de cada área: Redes, Linguagem C,
+        Sistemas Operacionais e Banco de Dados.
+      </p>
+
+      <label for="nome" class="rotulo">Seu nome</label>
+      <input id="nome" type="text" class="campo" placeholder="Digite seu nome" autocomplete="given-name" maxlength="30">
+      <p id="aviso-nome" class="aviso">Digite seu nome para liberar o quiz.</p>
+
+      <button id="btn-iniciar" class="botao" type="button" disabled>Iniciar Quiz</button>
+    </section>
+
+    <!-- TELA 2: perguntas (o conteúdo é trocado pelo script.js) -->
+    <section id="tela-quiz" class="tela oculta">
+      <div class="topo-quiz">
+        <span id="contador" class="contador">Pergunta 1 de 4</span>
+        <span id="area" class="area">Redes</span>
+      </div>
+      <div class="barra" aria-hidden="true">
+        <div id="barra-preenchida" class="barra-preenchida"></div>
+      </div>
+
+      <!-- Desafio 2: pergunta em <p> que fica vermelha ao passar o mouse -->
+      <p id="pergunta" class="pergunta"></p>
+
+      <!-- Desafio 3: lista de alternativas em <li> -->
+      <ul id="alternativas" class="alternativas">
+        <li class="alternativa" tabindex="0" role="button"></li>
+        <li class="alternativa" tabindex="0" role="button"></li>
+        <li class="alternativa" tabindex="0" role="button"></li>
+        <li class="alternativa" tabindex="0" role="button"></li>
+      </ul>
+
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+
+      <button id="btn-proxima" class="botao" type="button" disabled>Próxima pergunta</button>
+      <p class="dica">Teclado: 1–4 (ou A–D) escolhem a resposta e Enter avança.</p>
+    </section>
+
+    <!-- TELA 3: placar final -->
+    <section id="tela-resultado" class="tela oculta">
+      <div id="placar" class="placar"></div>
+      <button id="btn-reiniciar" class="botao" type="button">Refazer quiz</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

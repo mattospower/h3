@@ -1,0 +1,328 @@
+/* ===== Variáveis de cor e tipografia ===== */
+:root {
+  --papel: #e8eef6;
+  --tinta: #13213c;
+  --tinta-suave: #4a5878;
+  --azul: #2b59ff;
+  --branco: #ffffff;
+  --verde: #4ccb85;
+  --vermelho: #ff6b6b;
+  --vermelho-texto: #d62828;
+  --destaque: #ffe066;
+  --cinza: #c3cbd9;
+
+  --fonte-titulo: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --fonte-texto: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  /* papel quadriculado discreto */
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(rgba(19, 33, 60, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 33, 60, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ===== Cartão principal ===== */
+.cartao {
+  width: 100%;
+  max-width: 640px;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  background: var(--branco);
+  border: 3px solid var(--tinta);
+  box-shadow: 8px 8px 0 var(--tinta);
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+/* ===== Telas ===== */
+.tela {
+  display: block;
+}
+
+.tela.oculta {
+  display: none;
+}
+
+.intro {
+  margin: 0 0 1.5rem;
+  color: var(--tinta-suave);
+}
+
+/* ===== Formulário de nome ===== */
+.rotulo {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.campo {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--branco);
+  border: 2px solid var(--tinta);
+  border-radius: 0;
+}
+
+.campo.valido {
+  border-color: #1b8a52;
+  background: #effaf4;
+}
+
+.aviso {
+  min-height: 1.5rem;
+  margin: 0.4rem 0 1.25rem;
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+}
+
+.aviso.valido {
+  color: #1b8a52;
+  font-weight: 500;
+}
+
+/* ===== Botões ===== */
+.botao {
+  display: inline-block;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--branco);
+  background: var(--azul);
+  border: 2px solid var(--tinta);
+  box-shadow: 4px 4px 0 var(--tinta);
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.botao:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--tinta);
+}
+
+.botao:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--tinta);
+}
+
+.botao:disabled {
+  color: var(--tinta-suave);
+  background: var(--cinza);
+  border-color: var(--tinta-suave);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ===== Cabeçalho do quiz e barra de progresso ===== */
+.topo-quiz {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.contador {
+  color: var(--tinta-suave);
+}
+
+.area {
+  padding: 0.1rem 0.6rem;
+  font-weight: 600;
+  color: var(--branco);
+  background: var(--tinta);
+}
+
+.barra {
+  height: 10px;
+  margin-bottom: 1.5rem;
+  background: var(--papel);
+  border: 2px solid var(--tinta);
+}
+
+.barra-preenchida {
+  height: 100%;
+  width: 0;
+  background: var(--azul);
+  transition: width 0.3s ease;
+}
+
+/* ===== Pergunta (vermelha no hover, via classe aplicada pelo JS) ===== */
+.pergunta {
+  margin: 0 0 1.25rem;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: default;
+  transition: color 0.15s ease;
+}
+
+.pergunta.pergunta-vermelha {
+  color: var(--vermelho-texto);
+}
+
+/* ===== Alternativas ===== */
+.alternativas {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  counter-reset: alt;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.alternativa {
+  counter-increment: alt;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--branco);
+  border: 2px solid var(--tinta);
+  cursor: pointer;
+  transition: background-color 0.12s ease, transform 0.12s ease;
+}
+
+/* letra A, B, C, D: acompanha a tecla de atalho */
+.alternativa::before {
+  content: counter(alt, upper-alpha);
+  flex: 0 0 auto;
+  min-width: 1.6rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  text-align: center;
+  color: var(--branco);
+  background: var(--tinta);
+}
+
+/* estado: mouse por cima (classe adicionada em mouseover e removida em mouseout) */
+.alternativa.destaque {
+  background: var(--destaque);
+  transform: translateX(4px);
+}
+
+/* estado: resposta correta */
+.alternativa.correta {
+  background: var(--verde);
+  font-weight: 600;
+}
+
+/* estado: resposta incorreta */
+.alternativa.incorreta {
+  background: var(--vermelho);
+  font-weight: 600;
+}
+
+/* estado: pergunta já respondida */
+.alternativa.bloqueada {
+  cursor: default;
+}
+
+/* ===== Feedback, dica e placar ===== */
+.feedback {
+  min-height: 3.2rem;
+  margin: 0 0 1rem;
+  font-size: 0.97rem;
+  color: var(--tinta-suave);
+}
+
+.dica {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--tinta-suave);
+}
+
+.placar {
+  margin-bottom: 1.5rem;
+}
+
+.pontuacao {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.6rem, 10vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mensagem-final {
+  margin: 0.5rem 0 1.25rem;
+  color: var(--tinta-suave);
+}
+
+.resumo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.resumo li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--tinta);
+}
+
+.resumo li.acertou {
+  background: var(--verde);
+}
+
+.resumo li.errou {
+  background: var(--vermelho);
+}
+
+/* ===== Acessibilidade ===== */
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ===== Telas pequenas ===== */
+@media (max-width: 480px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  .cartao {
+    box-shadow: 5px 5px 0 var(--tinta);
+  }
+
+  .botao {
+    width: 100%;
+  }
+}
